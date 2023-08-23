@@ -1,4 +1,4 @@
-using AutodocWebTest.Data;
+п»їusing AutodocWebTest.Data;
 using AutodocWebTest.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -6,25 +6,25 @@ using OpenQA.Selenium.Chrome;
 
 namespace AutodocWebTest.RootTest.Authorization
 {
-    [TestFixture]//Таким атрибутом нужно пометить класс, чтобы система тестирования начала искать в нем тесты.
+    [TestFixture]//РўР°РєРёРј Р°С‚СЂРёР±СѓС‚РѕРј РЅСѓР¶РЅРѕ РїРѕРјРµС‚РёС‚СЊ РєР»Р°СЃСЃ, С‡С‚РѕР±С‹ СЃРёСЃС‚РµРјР° С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РЅР°С‡Р°Р»Р° РёСЃРєР°С‚СЊ РІ РЅРµРј С‚РµСЃС‚С‹.
     public class AuthorizationTest : BaseTest
     {
-        //Таким атрибутом нужно пометить метод, чтобы система тестирования поняла, что это тест.
-        [Test]//Smoke : Вход в личный кабинет(ЛК) : Валидный
+        //РўР°РєРёРј Р°С‚СЂРёР±СѓС‚РѕРј РЅСѓР¶РЅРѕ РїРѕРјРµС‚РёС‚СЊ РјРµС‚РѕРґ, С‡С‚РѕР±С‹ СЃРёСЃС‚РµРјР° С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РїРѕРЅСЏР»Р°, С‡С‚Рѕ СЌС‚Рѕ С‚РµСЃС‚.
+        [Test]//Smoke : Р’С…РѕРґ РІ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚(Р›Рљ) : Р’Р°Р»РёРґРЅС‹Р№
         public void ValidSignInTest()
         {
             var headerMenu = new HeaderMenuPageObject(driver);
 
-            headerMenu//Открываем страницу авторизации, выполняем вход
+            headerMenu//РћС‚РєСЂС‹РІР°РµРј СЃС‚СЂР°РЅРёС†Сѓ Р°РІС‚РѕСЂРёР·Р°С†РёРё, РІС‹РїРѕР»РЅСЏРµРј РІС…РѕРґ
                 .openPageAuthorization()
                 .SignIn(DataToTest.validLogin, DataToTest.validPassword);
 
-            string actualLoginUser = headerMenu.GetTextLinkLoginUser();//Присваиваем переменной actualLoginUser текст элемента 'Логин пользователя'
+            string actualLoginUser = headerMenu.GetTextLinkLoginUser();//РџСЂРёСЃРІР°РёРІР°РµРј РїРµСЂРµРјРµРЅРЅРѕР№ actualLoginUser С‚РµРєСЃС‚ СЌР»РµРјРµРЅС‚Р° 'Р›РѕРіРёРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ'
 
-            Assert.That(actualLoginUser, Is.EqualTo(DataToTest.validLogin));//Сравниваем текст логина 
+            Assert.That(actualLoginUser, Is.EqualTo(DataToTest.validLogin));//РЎСЂР°РІРЅРёРІР°РµРј С‚РµРєСЃС‚ Р»РѕРіРёРЅР° 
         }
 
-        [Test]//Smoke : Выход из ЛК 
+        [Test]//Smoke : Р’С‹С…РѕРґ РёР· Р›Рљ 
         public void logOutTest()
         {
             new HeaderMenuPageObject(driver)
@@ -36,7 +36,7 @@ namespace AutodocWebTest.RootTest.Authorization
             Assert.IsTrue(driver.FindElement(By.XPath(DataToTest.linkPrivateCabinet)).Displayed);
         }
 
-        [Test]//Smoke : Вход в личный кабинет(ЛК) : Невалидный
+        [Test]//Smoke : Р’С…РѕРґ РІ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚(Р›Рљ) : РќРµРІР°Р»РёРґРЅС‹Р№
         public void InvalidSignInTest()
         {
             new HeaderMenuPageObject(driver)
@@ -48,7 +48,7 @@ namespace AutodocWebTest.RootTest.Authorization
             Assert.That(actualErrorMessage, Is.EqualTo(DataToTest.titleErrorMessage));
         }
 
-        [Test]//CriticalPath : Вход в личный кабинет(ЛК) : Пустые поля логин/пароль
+        [Test]//CriticalPath : Р’С…РѕРґ РІ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚(Р›Рљ) : РџСѓСЃС‚С‹Рµ РїРѕР»СЏ Р»РѕРіРёРЅ/РїР°СЂРѕР»СЊ
         public void emptyFieldsSignInTest()
         {
             new HeaderMenuPageObject(driver)
@@ -58,7 +58,7 @@ namespace AutodocWebTest.RootTest.Authorization
             Assert.That(new AuthorizationPageObject(driver).GetTextTitleErrorMessage(), Is.EqualTo(DataToTest.titleErrorMessageNull));
         }
 
-        [Test]//CriticalPath : Вход в личный кабинет(ЛК) : Пустое поле логин
+        [Test]//CriticalPath : Р’С…РѕРґ РІ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚(Р›Рљ) : РџСѓСЃС‚РѕРµ РїРѕР»Рµ Р»РѕРіРёРЅ
         public void emptyFieldLoginSignInTest()
         {
             new HeaderMenuPageObject(driver)
@@ -68,7 +68,7 @@ namespace AutodocWebTest.RootTest.Authorization
             Assert.That(new AuthorizationPageObject(driver).GetTextTitleErrorMessage(), Is.EqualTo(DataToTest.titleErrorMessageNull));
         }
 
-        [Test]//CriticalPath : Вход в личный кабинет(ЛК) : Пустое поле пароль
+        [Test]//CriticalPath : Р’С…РѕРґ РІ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚(Р›Рљ) : РџСѓСЃС‚РѕРµ РїРѕР»Рµ РїР°СЂРѕР»СЊ
         public void emptyFieldPasswordSignInTest()
         {
             new HeaderMenuPageObject(driver)
