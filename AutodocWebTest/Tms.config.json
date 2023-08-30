@@ -1,0 +1,11 @@
+﻿{
+  "url": "http://portainer.autodoc-local.ru:8088/projects",
+  "privateToken": "MldIYkM4dm82dFc2SFhKRmVm",
+  "projectId": "d313fba4-23ac-4b0f-9961-41f64ffb4168",
+  "configurationId": "20142ab5-6acd-4adc-b7de-0ac0109fa4e5",
+  "testRunId": "1",
+  "testRunName": "",
+  "adapterMode": "2",
+  "automaticCreationTestCases": "true",
+  "certValidation": "false"
+}
