@@ -13,13 +13,11 @@ namespace AutodocWebTest.RootTest.Authorization
         [Test]//Smoke : Вход в личный кабинет(ЛК) : Валидный
         public void ValidSignInTest()
         {
-            var headerMenu = new HeaderMenuPageObject(driver);
-
-            headerMenu//Открываем страницу авторизации, выполняем вход
+            new MainUserNotSignInPageObject(driver)//Открываем страницу авторизации, выполняем вход
                 .openPageAuthorization()
                 .SignIn(DataToTest.validLogin, DataToTest.validPassword);
 
-            string actualLoginUser = headerMenu.GetTextLinkLoginUser();//Присваиваем переменной actualLoginUser текст элемента 'Логин пользователя'
+            string actualLoginUser = new MainUserSignInPageObject(driver).GetTextLinkLoginUser();//Присваиваем переменной actualLoginUser текст элемента 'Логин пользователя'
 
             Assert.That(actualLoginUser, Is.EqualTo(DataToTest.validLogin));//Сравниваем текст логина 
         }
@@ -27,7 +25,7 @@ namespace AutodocWebTest.RootTest.Authorization
         [Test]//Smoke : Выход из ЛК 
         public void logOutTest()
         {
-            new HeaderMenuPageObject(driver)
+            new MainUserNotSignInPageObject(driver)
                 .openPageAuthorization()
                 .SignIn(DataToTest.validLogin, DataToTest.validPassword)
                 .openPagePrivateCabinet()
@@ -39,7 +37,7 @@ namespace AutodocWebTest.RootTest.Authorization
         [Test]//Smoke : Вход в личный кабинет(ЛК) : Невалидный
         public void InvalidSignInTest()
         {
-            new HeaderMenuPageObject(driver)
+            new MainUserNotSignInPageObject(driver)
                 .openPageAuthorization()
                 .SignIn(DataToTest.invalidLogin, DataToTest.invalidPassword);
 
@@ -51,7 +49,7 @@ namespace AutodocWebTest.RootTest.Authorization
         [Test]//CriticalPath : Вход в личный кабинет(ЛК) : Пустые поля логин/пароль
         public void emptyFieldsSignInTest()
         {
-            new HeaderMenuPageObject(driver)
+            new MainUserNotSignInPageObject(driver)
                 .openPageAuthorization()
                 .SignIn("", "");
 
@@ -61,7 +59,7 @@ namespace AutodocWebTest.RootTest.Authorization
         [Test]//CriticalPath : Вход в личный кабинет(ЛК) : Пустое поле логин
         public void emptyFieldLoginSignInTest()
         {
-            new HeaderMenuPageObject(driver)
+            new MainUserNotSignInPageObject(driver)
                 .openPageAuthorization()
                 .SignIn("", DataToTest.validPassword);
 
@@ -71,7 +69,7 @@ namespace AutodocWebTest.RootTest.Authorization
         [Test]//CriticalPath : Вход в личный кабинет(ЛК) : Пустое поле пароль
         public void emptyFieldPasswordSignInTest()
         {
-            new HeaderMenuPageObject(driver)
+            new MainUserNotSignInPageObject(driver)
                 .openPageAuthorization()
                 .SignIn(DataToTest.validLogin, "");
 
