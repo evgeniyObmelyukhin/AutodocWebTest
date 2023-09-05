@@ -1,5 +1,6 @@
 ﻿using AutodocWebTest.Data;
 using AutodocWebTest.PageObjects;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -7,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 namespace AutodocWebTest.RootTest.Authorization
 {
     [TestFixture]//Таким атрибутом нужно пометить класс, чтобы система тестирования начала искать в нем тесты.
+    [AllureNUnit]
     public class AuthorizationTest : BaseTest
     {
         //Таким атрибутом нужно пометить метод, чтобы система тестирования поняла, что это тест.
