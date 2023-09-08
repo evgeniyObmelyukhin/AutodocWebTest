@@ -7,14 +7,14 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace AutodocWebTest.RootTest.Authorization
+namespace AutodocWebTest.RootTest.SmokeTest
 {
     [TestFixture]
     [AllureNUnit]
     [AllureEpic("AutodocAutomationWebUI")]
     [AllureFeature("Authorization/Authentication")]
     
-    public class AuthorizationTest : BaseTest
+    public class AuthorizationUserTest : BaseTest
     {
         [AllureTag("Smoke", "Regression", "SignIn")]
         [AllureSeverity(SeverityLevel.blocker)]
@@ -31,7 +31,7 @@ namespace AutodocWebTest.RootTest.Authorization
             string actualLoginUser = new MainUserSignInPageObject(driver).GetTextLinkLoginUser();//Присваиваем переменной actualLoginUser текст элемента 'Логин пользователя'
 
             Console.WriteLine("Сравниваем текст логина который ввели с тем что отображается на странице.");
-            Assert.That(actualLoginUser, Is.EqualTo(DataToTest.validLogin));//Сравниваем текст логина 
+            Assert.That(actualLoginUser, Is.EqualTo(DataToTest.validLogin));
         }
 
         [AllureTag("Smoke", "Regression", "LogOut")]

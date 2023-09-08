@@ -20,5 +20,6 @@ namespace AutodocWebTest.Data
         public static string linkPrivateCabinet { get; } = "//a[contains(text(),'Личный кабинет')]";//Ссылка "Личный кабинет" на ГС
         public static string titleErrorMessage { get; } = "Не удалось авторизоваться.";//Тест ошибки при некорректном логин/пароль
         public static string titleErrorMessageNull { get; } = "Логин и пароль не могут быть пустыми";//Тест ошибки при пустых полях
+        public static string titleH1RegistrationUser { get; } = "//h1[text()=' Регистрация пользователя ']";//Заголовок 'Регистрация пользователя'
     }
 }

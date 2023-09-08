@@ -22,6 +22,7 @@ namespace AutodocWebTest.PageObjects
         private readonly By _buttonInput = By.XPath("//button[@id='submit_logon_page']");//Кнопка "Вход"
         private readonly By _titleErrorMessage = By.XPath("//div[@id='errorMessage']");//Заголовок ошибки при некорректном входе
         private readonly By _logotypeAutodoc = By.XPath("//div[@class='atd-popup-logo-red']");//Логотип Автодок
+        private readonly By _linkRegistration = By.XPath("//a[text()='Регистрация']");//Ссылка 'Регистрация'
 
         public MainUserSignInPageObject SignIn(string login, string password)//Ввести логин и пароль, войти
         {
@@ -39,6 +40,14 @@ namespace AutodocWebTest.PageObjects
             string textErrorMessage = driver.FindElement(_titleErrorMessage).Text;
 
             return textErrorMessage;
+        }
+
+        public RegistrationUserPageObject ClickLinkRegistration()//Нажать ссылку 'Регистрация'
+        {
+            WaitUntil.WaitElement(driver, _linkRegistration);
+            driver.FindElement(_linkRegistration).Click();
+
+            return new RegistrationUserPageObject(driver);
         }
     }
 }
