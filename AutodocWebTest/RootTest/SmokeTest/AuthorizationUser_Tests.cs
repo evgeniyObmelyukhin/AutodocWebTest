@@ -12,9 +12,9 @@ namespace AutodocWebTest.RootTest.SmokeTest
     [TestFixture]
     [AllureNUnit]
     [AllureEpic("AutodocAutomationWebUI")]
-    [AllureFeature("Authorization/Authentication")]
+    [AllureFeature("Выполняются позитивные/негативные сценарии входа в ЛК + выход из ЛК.")]
     
-    public class AuthorizationUserTest : BaseTest
+    public class AuthorizationUser_Tests : BaseTest
     {
         [AllureTag("Smoke", "Regression", "SignIn")]
         [AllureSeverity(SeverityLevel.blocker)]
@@ -46,6 +46,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
                 .openPagePrivateCabinet()
                 .clickButtonLogOut();
 
+            Console.WriteLine("Проверяем, что произошёл выход из личного кабинета.Персональный логин не отображается.");
             Assert.IsTrue(driver.FindElement(By.XPath(DataToTest.linkPrivateCabinet)).Displayed);
         }
 
