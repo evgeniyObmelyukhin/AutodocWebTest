@@ -19,12 +19,17 @@ namespace AutodocWebTest.PageObjects
 
         private readonly By _fieldLogin = By.XPath("//input[@name='Login']");//Поле "Логин"
         private readonly By _fieldPassword = By.XPath("//input[@id='Password']");//Поле "Пароль"
+        private readonly By _buttonDisplayPasswordOn = By.XPath("//i[@class='pi pi-eye']");//Кнопка отображения пароля(состояние вкл.= пароль скрыт).
+        private readonly By _buttonDisplayPasswordOff = By.XPath("//i[@class='pi pi-eye-slash']");//Кнопка отображения пароля(состояние выкл.= пароль читаем).
+        private readonly By _checkBoxMemorize = By.XPath("//span[@class='icon fa']");//Чек-бокс "Запомнить"
         private readonly By _buttonInput = By.XPath("//button[@id='submit_logon_page']");//Кнопка "Вход"
         private readonly By _titleErrorMessage = By.XPath("//div[@id='errorMessage']");//Заголовок ошибки при некорректном входе
         private readonly By _logotypeAutodoc = By.XPath("//div[@class='atd-popup-logo-red']");//Логотип Автодок
         private readonly By _linkRegistration = By.XPath("//a[text()='Регистрация']");//Ссылка 'Регистрация'
         private readonly By _linkRestorePassword = By.XPath("//a[text()='Восстановить пароль']");//Ссылка 'Восстановить пароль'
         private readonly By _buttonCloseX = By.XPath("//div[@class='atd-popup-close']");//Кнопка "Х"
+
+        public static string checkBoxMemorize { get; } = "//span[@class='icon fa']";
 
         public MainUserSignInPageObject SignIn(string login, string password)//Ввести логин и пароль, войти
         {
@@ -34,6 +39,14 @@ namespace AutodocWebTest.PageObjects
             driver.FindElement(_buttonInput).Click();
 
             return new MainUserSignInPageObject(driver);
+        }
+
+        public AuthorizationPageObject InputPassword(string password)//Ввести пароль
+        {
+            WaitUntil.WaitElement(driver, _fieldPassword);
+            driver.FindElement(_fieldPassword).SendKeys(password);
+
+            return this;
         }
 
         public string GetTextTitleErrorMessage()//Получить текст ошибки при НЕкорректном входе
@@ -74,6 +87,30 @@ namespace AutodocWebTest.PageObjects
             driver.FindElement(_buttonCloseX).Click();
 
             return new MainUserNotSignInPageObject(driver);
+        }
+
+        public AuthorizationPageObject ClickButtonDisplayPasswordOn()//Нажать кнопку отображения пароля(состояние вкл.= пароль скрыт).
+        {
+            WaitUntil.WaitElement(driver, _buttonDisplayPasswordOn);
+            driver.FindElement(_buttonDisplayPasswordOn).Click();
+
+            return this;
+        }
+
+        public AuthorizationPageObject ClickButtonDisplayPasswordOff()//Нажать кнопку отображения пароля(состояние выкл.= пароль читаем).
+        {
+            WaitUntil.WaitElement(driver, _buttonDisplayPasswordOff);
+            driver.FindElement(_buttonDisplayPasswordOff).Click();
+
+            return this;
+        }
+    
+        public AuthorizationPageObject ClickCheckBoxMemorize()//Нажать чек-бокс "Запомнить"
+        {
+            WaitUntil.WaitElement(driver, _checkBoxMemorize);
+            driver.FindElement(_checkBoxMemorize).Click();
+
+            return this;
         }
     }
 }

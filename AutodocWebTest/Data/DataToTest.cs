@@ -22,6 +22,7 @@ namespace AutodocWebTest.Data
         public static string titleErrorMessageNull { get; } = "Логин и пароль не могут быть пустыми";//Тест ошибки при пустых полях
         public static string titleH1RegistrationUser { get; } = "//h1[text()=' Регистрация пользователя ']";//Заголовок 'Регистрация пользователя' на странице 'Регистрация пользователя'
         public static string titleRestorePassword { get; } = "//h1[text()='Восстановление пароля']";//Заголовок 'Восстановление пароля' на странице 'Восстановление пароля'
-        public static string titleH1onMainPage { get; } = "//h1[text()='Запчасти в интернет-магазине Автодок']";//Заголовок 'Запчасти в интернет-магазине Автодок' на ГС 
+        public static string titleH1onMainPage { get; } = "//h1[text()='Запчасти в интернет-магазине Автодок']";//Заголовок 'Запчасти в интернет-магазине Автодок' на ГС
+        public static string fieldPassword { get; } = "//input[@id='Password']";//Поле пароль
     }
 }

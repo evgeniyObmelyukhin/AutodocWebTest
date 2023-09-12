@@ -75,5 +75,40 @@ namespace AutodocWebTest.RootTest.SmokeTest
             Assert.IsTrue(driver.FindElement(By.XPath(DataToTest.titleH1onMainPage)).Displayed);
         }
 
+        [AllureTag("CriticalPath")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureStory("Показать пароль.")]
+        [Test(Description = "Открываем страницу Авторизации; Вводим пароль; Вкл/Выкл отображения пароля.")]
+        public void Click_DisplayPassword_Test()
+        {
+            new MainUserNotSignInPageObject(driver)
+                .openPageAuthorization()
+                .InputPassword(DataToTest.validPassword)
+                .ClickButtonDisplayPasswordOn();
+
+            Console.WriteLine("Проверяем, что пароль в поле 'Password' из type состояния 'password' перешёл в type состояние 'text'");
+            Assert.That(driver.FindElement(By.XPath(DataToTest.fieldPassword)).GetAttribute("type"), Is.EqualTo("text"));
+
+            new AuthorizationPageObject(driver)
+                .ClickButtonDisplayPasswordOff();
+
+            Console.WriteLine("Проверяем, что пароль в поле 'Password' из type состояния 'text' перешёл в type состояние 'password'");
+            Assert.That(driver.FindElement(By.XPath(DataToTest.fieldPassword)).GetAttribute("type"), Is.EqualTo("password"));
+        }
+
+        [Ignore("Тест игнорируется, потому что чекБокс реализован не корректно, так же отсутствует внутренняя логика.")]
+        [AllureTag("CriticalPath")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureStory("Работа чек-бокса 'Запомнить'.")]
+        [Test(Description = "Открываем страницу Авторизации; Вкл/Выкл чек-бокс 'Запомнить'.")]
+        public void Click_CheckBoxMemorize_Test()
+        {
+            new MainUserNotSignInPageObject(driver)
+                .openPageAuthorization()
+                .ClickCheckBoxMemorize();
+
+            Assert.IsTrue(driver.FindElement(By.XPath(AuthorizationPageObject.checkBoxMemorize)).Selected);
+                
+        }
     }
 }
