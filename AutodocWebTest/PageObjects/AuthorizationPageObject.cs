@@ -29,7 +29,8 @@ namespace AutodocWebTest.PageObjects
         private readonly By _linkRestorePassword = By.XPath("//a[text()='Восстановить пароль']");//Ссылка 'Восстановить пароль'
         private readonly By _buttonCloseX = By.XPath("//div[@class='atd-popup-close']");//Кнопка "Х"
 
-        public static string checkBoxMemorize { get; } = "//span[@class='icon fa']";
+        //Элементы для проверок
+        public static string checkBoxMemorize { get; } = "//span[@class='icon fa']";//Чек-бокс "Запомнить"
 
         public MainUserSignInPageObject SignIn(string login, string password)//Ввести логин и пароль, войти
         {

@@ -23,7 +23,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
         public void ValidSignInTest()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .SignIn(DataToTest.validLogin, DataToTest.validPassword);
 
             Console.WriteLine($"Логин: {DataToTest.validLogin}, Пароль: {DataToTest.validPassword}");
@@ -38,10 +38,10 @@ namespace AutodocWebTest.RootTest.SmokeTest
         [AllureSeverity(SeverityLevel.blocker)]
         [AllureStory("Выход из ЛК.")]
         [Test(Description = "Открываем страницу авторизации; Вводим валидный логин/пароль; Выполняем вход; Выполняем выход.")]
-        public void logOutTest()
+        public void LogOutTest()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .SignIn(DataToTest.validLogin, DataToTest.validPassword)
                 .openPagePrivateCabinet()
                 .clickButtonLogOut();
@@ -57,7 +57,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
         public void InvalidSignInTest()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .SignIn(DataToTest.invalidLogin, DataToTest.invalidPassword);
 
             string actualErrorMessage = new AuthorizationPageObject(driver).GetTextTitleErrorMessage();
@@ -70,10 +70,10 @@ namespace AutodocWebTest.RootTest.SmokeTest
         [AllureSeverity(SeverityLevel.critical)]
         [AllureStory("Вход в ЛК : Пустые поля логин и пароль.")]
         [Test(Description = "Открываем страницу авторизации; Оставляем пустыми поля логин/пароль; Выполняем вход.")]
-        public void emptyFieldsSignInTest()
+        public void EmptyFieldsSignInTest()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .SignIn("", "");
             Console.WriteLine("Получаем текст полученной ошибки и сравниваем его с текстом 'Логин и пароль не могут быть пустыми'");
             Assert.That(new AuthorizationPageObject(driver).GetTextTitleErrorMessage(), Is.EqualTo(DataToTest.titleErrorMessageNull));
@@ -83,10 +83,10 @@ namespace AutodocWebTest.RootTest.SmokeTest
         [AllureSeverity(SeverityLevel.critical)]
         [AllureStory("Вход в ЛК : Пустое поле логин и валидный пароль.")]
         [Test(Description = "Открываем страницу авторизации; Оставляем пустым поле логин; Вводим валидный пароль; Выполняем вход.")]
-        public void emptyFieldLoginSignInTest()
+        public void EmptyFieldLoginSignInTest()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .SignIn("", DataToTest.validPassword);
 
             Console.WriteLine("Получаем текст полученной ошибки и сравниваем его с текстом 'Логин и пароль не могут быть пустыми'");
@@ -97,10 +97,10 @@ namespace AutodocWebTest.RootTest.SmokeTest
         [AllureSeverity(SeverityLevel.critical)]
         [AllureStory("Вход в ЛК : Валидный логин и пустое поле пароль.")]
         [Test(Description = "Открываем страницу авторизации; Вводим валидный логин; Оставляем пустым поле пароль; Выполняем вход.")]
-        public void emptyFieldPasswordSignInTest()
+        public void EmptyFieldPasswordSignInTest()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .SignIn(DataToTest.validLogin, "");
 
             Console.WriteLine("Получаем текст полученной ошибки и сравниваем его с текстом 'Логин и пароль не могут быть пустыми'");

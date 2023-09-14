@@ -26,11 +26,16 @@ namespace AutodocWebTest.RootTest.SmokeTest
         public void GoTo_RegistrationPageTest()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .ClickLinkRegistration();
 
-            Console.WriteLine("Проверяем. что мы перешли на страницу 'Регистрация'");
-            Assert.IsTrue(driver.FindElement(By.XPath(DataToTest.titleH1RegistrationUser)).Displayed);
+            Console.WriteLine("Проверяем. что мы перешли на страницу 'Регистрация пользователя'");
+            Assert.IsTrue(driver.FindElement(By.XPath(RegistrationUserPageObject.titleH1RegistrationUser)).Displayed);
+
+            string classAttributeValue = driver.FindElement(By.XPath(RegistrationUserPageObject.buttonPhysicalPerson)).GetAttribute("class");
+            Assert.That(classAttributeValue.Contains("active"), Is.True);
+
+            Assert.IsTrue(driver.FindElement(By.XPath(RegistrationUserPageObject.titleRegistrationCrumbs)).Displayed);
         }
 
         [AllureTag("CriticalPath", "Regression")]
@@ -40,7 +45,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
         public void GoTo_RestorePasswordPageTest()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .ClickLinkRestorePassword();
 
             Console.WriteLine("Проверяем. что мы перешли на страницу 'Восстановить пароль'");
@@ -54,7 +59,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
         public void GoTo_AuthorizationPage_MainPage_LogoAutodoc_Test()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .ClickLogotypeAutodoc();
 
             Console.WriteLine("Проверяем, что мы перешли на ГС страницу.");
@@ -68,7 +73,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
         public void Close_AuthorizationPage_Test()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .ClickButtonCloseX();
 
             Console.WriteLine("Проверяем, что мы перешли на ГС страницу.");
@@ -82,7 +87,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
         public void Click_DisplayPassword_Test()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .InputPassword(DataToTest.validPassword)
                 .ClickButtonDisplayPasswordOn();
 
@@ -104,7 +109,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
         public void Click_CheckBoxMemorize_Test()
         {
             new MainUserNotSignInPageObject(driver)
-                .openPageAuthorization()
+                .OpenPageAuthorization()
                 .ClickCheckBoxMemorize();
 
             Assert.IsTrue(driver.FindElement(By.XPath(AuthorizationPageObject.checkBoxMemorize)).Selected);
