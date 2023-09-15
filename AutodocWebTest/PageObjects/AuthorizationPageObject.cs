@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace AutodocWebTest.PageObjects
 {
-    public class AuthorizationPageObject//Страница Авторизации, пользователь НЕ вошёл
+    public class AuthorizationPageObject//Страница "Авторизация", пользователь НЕ вошёл
     {
         private IWebDriver driver;
-
         public AuthorizationPageObject(IWebDriver driver)
         {
             this.driver = driver;
         }
 
+        //Элементы для методов
         private readonly By _fieldLogin = By.XPath("//input[@name='Login']");//Поле "Логин"
         private readonly By _fieldPassword = By.XPath("//input[@id='Password']");//Поле "Пароль"
         private readonly By _buttonDisplayPasswordOn = By.XPath("//i[@class='pi pi-eye']");//Кнопка отображения пароля(состояние вкл.= пароль скрыт).
@@ -31,7 +31,11 @@ namespace AutodocWebTest.PageObjects
 
         //Элементы для проверок
         public static string checkBoxMemorize { get; } = "//span[@class='icon fa']";//Чек-бокс "Запомнить"
+        public static string titleErrorMessage { get; } = "Не удалось авторизоваться.";//Тест ошибки при некорректном логин/пароль
+        public static string titleErrorMessageNull { get; } = "Логин и пароль не могут быть пустыми";//Тест ошибки при пустых полях
+        public static string fieldPassword { get; } = "//input[@id='Password']";//Поле пароль
 
+        //Методы взаимодействия с элементами
         public MainUserSignInPageObject SignIn(string login, string password)//Ввести логин и пароль, войти
         {
             WaitUntil.WaitElement(driver, _fieldLogin);

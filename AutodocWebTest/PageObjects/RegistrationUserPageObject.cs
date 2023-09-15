@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace AutodocWebTest.PageObjects
 {
-    public class RegistrationUserPageObject
+    public class RegistrationUserPageObject//Страница "Регистрация пользователя"
     {
         private IWebDriver driver;
-
         public RegistrationUserPageObject(IWebDriver driver)
         {
             this.driver = driver;
         }
 
+        //Элементы для методов
         private readonly By _titleH1RegistrationUser = By.XPath("//h1[text()=' Регистрация пользователя ']");//Заголовок 'Регистрация пользователя'
         private readonly By _titleRegistrationCrumbs = By.XPath("//h1[text()=' Регистрация ']");//Заголовок 'Регистрация' в крошках
         private readonly By _buttonPhysicalPerson = By.XPath("//div[text()=' Физическое лицо ']");//Кнопка 'Физическое лицо'
@@ -27,7 +27,8 @@ namespace AutodocWebTest.PageObjects
         public static string buttonPhysicalPerson { get; } = "//div[text()=' Физическое лицо ']";//Кнопка 'Физическое лицо'
         public static string titleRegistrationCrumbs { get; } = "//h1[text()=' Регистрация ']";//Заголовок 'Регистрация' в крошках
 
-        public ShopAddressPageObject ClickDropDownListShop()
+        //Методы взаимодействия с элементами
+        public ShopAddressPageObject ClickDropDownListShop()//Раскрыть выпадающий-список "Магазины"
         {
 
             return new ShopAddressPageObject(driver);

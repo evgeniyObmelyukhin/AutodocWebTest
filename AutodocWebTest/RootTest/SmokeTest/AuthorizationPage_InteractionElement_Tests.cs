@@ -16,14 +16,14 @@ namespace AutodocWebTest.RootTest.SmokeTest
     [TestFixture]
     [AllureNUnit]
     [AllureEpic("AutodocAutomationWebUI")]
-    [AllureFeature("Выполняются возможные переходы и взаимодействия с элементами на странице 'Авторизация'.")]
-    public class GoTo_AuthorizationPage_Tests : BaseTest
+    [AllureFeature("Выполняются взаимодействия с элементами расположенными на странице 'Авторизация'.")]
+    public class AuthorizationPage_InteractionElement_Tests : BaseTest
     {
         [AllureTag("CriticalPath", "Regression")]
         [AllureSeverity(SeverityLevel.critical)]
-        [AllureStory("Переход на страницу 'Регистрации' со страницы 'Авторизации'")]
-        [Test(Description = "Открываем страницу Авторизации; Нажимем ссылку 'Регистрация'.")]
-        public void GoTo_RegistrationPageTest()
+        [AllureStory("Переход на страницу 'Регистрация пользователя' : Успешно")]
+        [Test(Description = "Открываем страницу 'Авторизация'; Нажимем ссылку 'Регистрация'.")]
+        public void GoTo_RegistrationPage_Successful_Test()
         {
             new MainUserNotSignInPageObject(driver)
                 .OpenPageAuthorization()
@@ -49,7 +49,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
                 .ClickLinkRestorePassword();
 
             Console.WriteLine("Проверяем. что мы перешли на страницу 'Восстановить пароль'");
-            Assert.IsTrue(driver.FindElement(By.XPath(DataToTest.titleRestorePassword)).Displayed);
+            Assert.IsTrue(driver.FindElement(By.XPath(RestorePasswordPageObject.titleRestorePassword)).Displayed);
         }
 
         [AllureTag("CriticalPath", "Regression")]
@@ -63,7 +63,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
                 .ClickLogotypeAutodoc();
 
             Console.WriteLine("Проверяем, что мы перешли на ГС страницу.");
-            Assert.IsTrue(driver.FindElement(By.XPath(DataToTest.titleH1onMainPage)).Displayed);
+            Assert.IsTrue(driver.FindElement(By.XPath(MainUserNotSignInPageObject.titleH1onMainPage)).Displayed);
         }
 
         [AllureTag("CriticalPath", "Regression")]
@@ -77,7 +77,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
                 .ClickButtonCloseX();
 
             Console.WriteLine("Проверяем, что мы перешли на ГС страницу.");
-            Assert.IsTrue(driver.FindElement(By.XPath(DataToTest.titleH1onMainPage)).Displayed);
+            Assert.IsTrue(driver.FindElement(By.XPath(MainUserNotSignInPageObject.titleH1onMainPage)).Displayed);
         }
 
         [AllureTag("CriticalPath")]
@@ -92,13 +92,13 @@ namespace AutodocWebTest.RootTest.SmokeTest
                 .ClickButtonDisplayPasswordOn();
 
             Console.WriteLine("Проверяем, что пароль в поле 'Password' из type состояния 'password' перешёл в type состояние 'text'");
-            Assert.That(driver.FindElement(By.XPath(DataToTest.fieldPassword)).GetAttribute("type"), Is.EqualTo("text"));
+            Assert.That(driver.FindElement(By.XPath(AuthorizationPageObject.fieldPassword)).GetAttribute("type"), Is.EqualTo("text"));
 
             new AuthorizationPageObject(driver)
                 .ClickButtonDisplayPasswordOff();
 
             Console.WriteLine("Проверяем, что пароль в поле 'Password' из type состояния 'text' перешёл в type состояние 'password'");
-            Assert.That(driver.FindElement(By.XPath(DataToTest.fieldPassword)).GetAttribute("type"), Is.EqualTo("password"));
+            Assert.That(driver.FindElement(By.XPath(AuthorizationPageObject.fieldPassword)).GetAttribute("type"), Is.EqualTo("password"));
         }
 
         [Ignore("Тест игнорируется, потому что чекБокс реализован не корректно, так же отсутствует внутренняя логика.")]
