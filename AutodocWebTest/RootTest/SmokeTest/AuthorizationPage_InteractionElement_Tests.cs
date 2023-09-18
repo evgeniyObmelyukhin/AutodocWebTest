@@ -15,15 +15,15 @@ namespace AutodocWebTest.RootTest.SmokeTest
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureEpic("AutodocAutomationWebUI")]
+    [AllureEpic("AutodocWebAutomationUI")]
     [AllureFeature("Выполняются взаимодействия с элементами расположенными на странице 'Авторизация'.")]
     public class AuthorizationPage_InteractionElement_Tests : BaseTest
     {
-        [AllureTag("CriticalPath", "Regression")]
+        [AllureTag("CriticalPath", "Regression", "GoTo")]
         [AllureSeverity(SeverityLevel.critical)]
-        [AllureStory("Переход на страницу 'Регистрация пользователя' : Успешно")]
+        [AllureStory("Переход на страницу 'Регистрация пользователя'")]
         [Test(Description = "Открываем страницу 'Авторизация'; Нажимем ссылку 'Регистрация'.")]
-        public void GoTo_RegistrationPage_Successful_Test()
+        public void GoTo_RegistrationPage_Test()
         {
             new MainUserNotSignInPageObject(driver)
                 .OpenPageAuthorization()
@@ -38,25 +38,25 @@ namespace AutodocWebTest.RootTest.SmokeTest
             Assert.IsTrue(driver.FindElement(By.XPath(RegistrationUserPageObject.titleRegistrationCrumbs)).Displayed);
         }
 
-        [AllureTag("CriticalPath", "Regression")]
+        [AllureTag("CriticalPath", "Regression", "GoTo")]
         [AllureSeverity(SeverityLevel.critical)]
-        [AllureStory("Переход на страницу 'Восстановления пароля' со страницы 'Авторизации'.")]
-        [Test(Description = "Открываем страницу авторизации; Нажимем ссылку 'Восстановить пароль'.")]
-        public void GoTo_RestorePasswordPageTest()
+        [AllureStory("Переход на страницу 'Восстановление пароля'")]
+        [Test(Description = "Открываем страницу 'Авторизация'; Нажимем ссылку 'Восстановить пароль'.")]
+        public void GoTo_RestorePasswordPage_Test()
         {
             new MainUserNotSignInPageObject(driver)
                 .OpenPageAuthorization()
                 .ClickLinkRestorePassword();
 
-            Console.WriteLine("Проверяем. что мы перешли на страницу 'Восстановить пароль'");
+            Console.WriteLine("Проверяем, что мы перешли на страницу 'Восстановить пароль'");
             Assert.IsTrue(driver.FindElement(By.XPath(RestorePasswordPageObject.titleRestorePassword)).Displayed);
         }
 
-        [AllureTag("CriticalPath", "Regression")]
+        [AllureTag("CriticalPath", "Regression", "GoTo")]
         [AllureSeverity(SeverityLevel.minor)]
-        [AllureStory("Переход со страницы 'Авторизации' на ГС страницу с помощью логотипа Autodoc.ru.")]
-        [Test(Description = "Открываем страницу Авторизации; Нажимем логотипа 'Autodoc.ru'.")]
-        public void GoTo_AuthorizationPage_MainPage_LogoAutodoc_Test()
+        [AllureStory("Переход на ГС страницу с помощью логотипа Autodoc.ru")]
+        [Test(Description = "Открываем страницу 'Авторизация'; Нажимем логотип 'Autodoc.ru'.")]
+        public void GoTo_MainPage_Test()
         {
             new MainUserNotSignInPageObject(driver)
                 .OpenPageAuthorization()
@@ -68,8 +68,8 @@ namespace AutodocWebTest.RootTest.SmokeTest
 
         [AllureTag("CriticalPath", "Regression")]
         [AllureSeverity(SeverityLevel.normal)]
-        [AllureStory("Закрыть страницу 'Авторизации'")]
-        [Test(Description = "Открываем страницу Авторизации; Нажимем кнопку 'Х'.")]
+        [AllureStory("Закрыть страницу 'Авторизация'")]
+        [Test(Description = "Открываем страницу 'Авторизация'; Нажимем кнопку 'Х'.")]
         public void Close_AuthorizationPage_Test()
         {
             new MainUserNotSignInPageObject(driver)
@@ -82,8 +82,8 @@ namespace AutodocWebTest.RootTest.SmokeTest
 
         [AllureTag("CriticalPath")]
         [AllureSeverity(SeverityLevel.normal)]
-        [AllureStory("Показать пароль.")]
-        [Test(Description = "Открываем страницу Авторизации; Вводим пароль; Вкл/Выкл отображения пароля.")]
+        [AllureStory("Показать/скрыть введённые значения в поле 'Пароль'")]
+        [Test(Description = "Открываем страницу 'Авторизация'; Вводим пароль; Вкл/Выкл отображения пароля.")]
         public void Click_DisplayPassword_Test()
         {
             new MainUserNotSignInPageObject(driver)
@@ -105,7 +105,7 @@ namespace AutodocWebTest.RootTest.SmokeTest
         [AllureTag("CriticalPath")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureStory("Работа чек-бокса 'Запомнить'.")]
-        [Test(Description = "Открываем страницу Авторизации; Вкл/Выкл чек-бокс 'Запомнить'.")]
+        [Test(Description = "Открываем страницу 'Авторизация'; Вкл/Выкл чек-бокс 'Запомнить'.")]
         public void Click_CheckBoxMemorize_Test()
         {
             new MainUserNotSignInPageObject(driver)

@@ -25,7 +25,7 @@ namespace AutodocWebTest.RootTest
         {
             driver.Manage().Cookies.DeleteAllCookies();//Очистить все куки
             driver.Navigate().GoToUrl(TestSetting.Host);//Открыть ГС страницу сайта Автодок
-            driver.Manage().Window.Size = new System.Drawing.Size(1366, 768);//Открыть окно браузера заданного размера
+            driver.Manage().Window.Size = new System.Drawing.Size(1400, 1050);//Открыть окно браузера заданного размера
             WaitUntil.ShouldLocated(driver, TestSetting.Host);//Ожидание загрузки URL страницы
         }
 

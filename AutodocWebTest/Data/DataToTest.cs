@@ -11,6 +11,9 @@ namespace AutodocWebTest.Data
         //Валидные данные
         public static string validLogin { get; } = "SMA-121";
         public static string validPassword { get; } = "A123";
+        public static string validContactName { get; } = "Новак Прохор Макарович";
+        public static string validContactPhone { get; } = "9689499555";
+        public static string validEMail { get; } = "ProhorNovak153@test.ru";
 
         //Невалидные данные
         public static string invalidLogin { get; } = "BAD-1984";
