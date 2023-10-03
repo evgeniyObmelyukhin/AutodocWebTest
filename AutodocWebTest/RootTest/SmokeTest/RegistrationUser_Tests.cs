@@ -27,7 +27,8 @@ namespace AutodocWebTest.RootTest.SmokeTest
         {
             new MainUserNotSignInPageObject(driver)
                 .OpenPageRegistrationUser();
-            
+
+            WaitUntil.WaitSomeInterval(2);
             Console.WriteLine("Проверяем, что мы перешли на страницу 'Регистрация пользователя'");
             Assert.IsTrue(driver.FindElement(By.XPath(RegistrationUserPageObject.titleH1RegistrationUser)).Displayed);
             string classAttributeValue = driver.FindElement(By.XPath(RegistrationUserPageObject.buttonPhysicalPerson)).GetAttribute("class");
@@ -63,12 +64,19 @@ namespace AutodocWebTest.RootTest.SmokeTest
 
             new RegistrationUserPageObject(driver)
                 .Click_ButtonSignUp();
-
+            
             Console.WriteLine("Проверяем, что открылась страница 'Подтвердите регистрацию', телефон и почта на которую были отправлены проверочные коды соответствуют введённым данным.");
+            WaitUntil.WaitSomeInterval(4);
             Assert.IsTrue(driver.FindElement(By.XPath(ConfirmRegistrationPageObject.titleConfirmRegistration)).Displayed);
+            
             string textFieldConfirmPhone = driver.FindElement(By.XPath(ConfirmRegistrationPageObject.fieldConfirmPhone)).Text;
-            //Assert.That(textFieldConfirmPhone, Is.EqualTo(DataToTest.validContactPhone));
-            Assert.That(textFieldConfirmPhone.Contains(DataToTest.validContactPhone));
+            string cleanedConfirmPhone = new string(textFieldConfirmPhone.Where(char.IsDigit).ToArray());
+            string cleanPhoneNumber = cleanedConfirmPhone.Substring(1);
+            Assert.That(cleanPhoneNumber, Is.EqualTo(DataToTest.validContactPhone));
+            //Assert.That(textFieldConfirmPhone.Contains(DataToTest.validContactPhone));
+            
+            string textFieldEMail = driver.FindElement(By.XPath(ConfirmRegistrationPageObject.fieldConfirmMail)).Text;
+            Assert.That(textFieldEMail, Is.EqualTo(DataToTest.validEMail)); 
 
         }
     }

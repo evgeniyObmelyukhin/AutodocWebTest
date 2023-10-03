@@ -14,6 +14,7 @@ namespace AutodocWebTest.RootTest
     {
         protected IWebDriver driver;//Обьявляем поле driver
 
+
         [OneTimeSetUp]//Выполняется один раз перед всеми тестами
         protected void DoBeforeAllTests()
         {
@@ -27,6 +28,7 @@ namespace AutodocWebTest.RootTest
             driver.Navigate().GoToUrl(TestSetting.Host);//Открыть ГС страницу сайта Автодок
             driver.Manage().Window.Size = new System.Drawing.Size(1400, 1050);//Открыть окно браузера заданного размера
             WaitUntil.ShouldLocated(driver, TestSetting.Host);//Ожидание загрузки URL страницы
+            WaitUntil.WaitSomeInterval(2);
         }
 
         [TearDown]//Выполняется после каждого теста
@@ -39,6 +41,7 @@ namespace AutodocWebTest.RootTest
         protected void DoAfterAllTests()
         {
             driver.Quit();//Закрываем браузер и  завершаем сеанс WebDriver
+            driver.Dispose();
         }
     }
 }

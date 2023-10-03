@@ -24,7 +24,7 @@ namespace AutodocWebTest.PageObjects
         private readonly By _buttonLegalPerson = By.XPath("//div[text()=' Юридическое лицо ']");//Кнопка 'Юридическое лицо'
         private readonly By _dropDownListShop = By.XPath("//div[@role='button']");//Выпадающий-список 'Магазин'
         private readonly By _fieldContactName = By.XPath("//input[@formcontrolname='contactName']");//Поле 'Контактное лицо (ФИО)*'
-        private readonly By _fieldContactPhone = By.XPath("//p-inputmask[@type='tel']/..");//Поле 'Телефон*'
+        private readonly By _fieldContactPhone = By.XPath("//p-inputmask[@type='tel']/input");//Поле 'Телефон*'
         private readonly By _fieldEMail = By.XPath("//input[@type='email']");//Поле 'Email*'
         private readonly By _buttonSignUp = By.XPath("//button[text()=' Зарегистрироваться ']");//Кнопка 'Зарегистрироваться'
         private readonly By _checkBoxOfferAgree = By.XPath("//input[@formcontrolname='offerAgree']");//Чек-Бокс " Я ознакомился и принимаю условия договора-оферты"
@@ -56,6 +56,7 @@ namespace AutodocWebTest.PageObjects
         public RegistrationUserPageObject FillIn_FieldContactPhone(string numberPhone)//Заполнить поле 'Телефон*'
         {
             WaitUntil.WaitElement(driver, _fieldContactPhone);
+            driver.FindElement(_fieldContactPhone).Click();
             driver.FindElement(_fieldContactPhone).SendKeys(numberPhone);
 
             return this;
